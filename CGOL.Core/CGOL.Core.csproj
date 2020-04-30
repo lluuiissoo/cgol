@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <!-- Nuget package minimal-->
+    <PackageId>lluuiissoo.cgol.core</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Luis Carrazana</Authors>
+    <Company>LCDev</Company>
+    <!-- Nuget package optional-->
+    <Title>Conway's Game of Life - Core</Title>
+    <Product>Conway's Game of Life</Product>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <Description>Custom core implementation of Conway's Game of Life</Description>
+    <Copyright>Copyright (c) 2020 Luis Carrazana</Copyright>
+    <RepositoryUrl>https://github.com/lluuiissoo/cgol</RepositoryUrl>
+    <PackageTags>kata; game of life; conway</PackageTags>
+
+    <!-- Generate Nuget package automatically on every build-->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+  </PropertyGroup>
+
+</Project>

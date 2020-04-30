@@ -1,0 +1,6 @@
+- Implement worker service to generate generations (save to file?)
+- Implement UI to display
+  https://avaloniaui.net/
+  https://medium.com/@nicolasdorier/creating-a-cross-platform-desktop-app-in-net-core-part-one-be29079bcc71
+  https://ryansmane.github.io/ngGame-Of-Life/
+

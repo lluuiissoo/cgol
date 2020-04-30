@@ -1,0 +1,7 @@
+
+- Package
+dotnet pack
+
+- Publish
+cd CGOL.Core\bin\Debug\
+dotnet nuget push lluuiissoo.cgol.core.0.1.0.nupkg -k <mysecretkey> -s https://api.nuget.org/v3/index.json
