@@ -18,8 +18,8 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 <h1>How to use this project</h1>
 
-<h2>CGOL.Core</h2>>
-This library contains the core functionality to initialize a universe of cells and perform transaformations to it.
+<h2>CGOL.Core</h2>
+This library contains the core functionality to initialize a universe of cells and perform transformations to it.
 It can be used in a different UI project by referencint it from nuget:
 
 - dotnet add package lluuiissoo.cgol.core
@@ -27,10 +27,10 @@ It can be used in a different UI project by referencint it from nuget:
 Usage:
 
 - Create instance of Universe class
-Universe universe = new Universe()
+  - Universe universe = new Universe()
 
 - Iterate and apply rules:
-universe.Tick()
+  - universe.Tick()
 
 - Iterations could be done thru a scheduler (In Progress...)
 
