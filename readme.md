@@ -15,3 +15,31 @@ These rules, which compare the behavior of the automaton to real life, can be co
 The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed; births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick. Each generation is a pure function of the preceding one. The rules continue to be applied repeatedly to create further generations.
 
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+<h1>How to use this project</h1>
+
+<h2>CGOL.Core</h2>>
+This library contains the core functionality to initialize a universe of cells and perform transaformations to it.
+It can be used in a different UI project by referencint it from nuget:
+
+- dotnet add package lluuiissoo.cgol.core
+
+Usage:
+
+- Create instance of Universe class
+Universe universe = new Universe()
+
+- Iterate and apply rules:
+universe.Tick()
+
+- Iterations could be done thru a scheduler (In Progress...)
+
+<h2>CGOL.Desktop.UI</h2>
+This is a .NET Core Desktop UI based on Avalonia framework
+
+Usage:
+- cd CGOL.Desktop.UI
+- dotnet run
+
+
+
