@@ -27,14 +27,20 @@ It can be used in a different UI project by referencing it from nuget:
 Usage:
 
 - Create instance of Universe class
-  - Universe universe = new Universe()
+```c#
+  Universe universe = new Universe()
+```  
 
 - Iterate and apply rules:
-  - universe.Tick()
+```c#
+  universe.Tick()
   //Iterations should be done thru a timer (see implementation in Desktop UI project)
+```
 
 - Access state of new generations:
-  - universe.Generations.LastOrDefault().StateOfUniverse
+```c#
+  universe.Generations.LastOrDefault().StateOfUniverse
+```
 
 <h2>CGOL.Desktop.UI</h2>
 This is a .NET Core Desktop UI based on Avalonia framework
