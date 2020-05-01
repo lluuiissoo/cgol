@@ -4,3 +4,17 @@
   https://medium.com/@nicolasdorier/creating-a-cross-platform-desktop-app-in-net-core-part-one-be29079bcc71
   https://ryansmane.github.io/ngGame-Of-Life/
 
+- Add CI/CD pipeline
+  - Trigger build and tests for Core
+  - Release
+  - Publish nuget package
+
+- UX Enhancements
+  - Add input controls for:
+    - Grid's size (rows and columns)
+    - Action buttons (Start, Stop, Reset)
+  - Save state
+  - Load state (preload popular combinations)
+  - Add generation counter
+
+- Create web version

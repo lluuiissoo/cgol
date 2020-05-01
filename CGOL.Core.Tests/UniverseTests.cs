@@ -32,12 +32,12 @@ namespace CGOL.Core.Tests
             */
             Cell[,] expectedStateTick1 = new Cell[3,3] {
                 { new Cell(false), new Cell(false), new Cell(false) },
-                { new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(true), new Cell(false) },
                 {new Cell(false), new Cell(false), new Cell(false) },
             };
             /*
             0 0 0
-            0 0 0
+            0 1 0
             0 0 0
             */
             
@@ -53,7 +53,7 @@ namespace CGOL.Core.Tests
 
             //Asert
             Assert.Equal(2, universe.Generations.Count); //Ensure new generation was generated
-            Assert.True(MatchState(universe.Generations[1].StateOfUniverse, expectedStateTick1));
+            Assert.True(MatchState(expectedStateTick1, universe.Generations[1].StateOfUniverse));
         }
 
         [Fact]
@@ -106,6 +106,93 @@ namespace CGOL.Core.Tests
 
             //Asert
             Assert.True(MatchState(expectedStateTick2, universe.Generations[2].StateOfUniverse));
+        }
+
+        [Fact]
+        public void Universe_Tick_DiagonalWith5Cells_ShouldIterate3Times()
+        {
+            //Arrange
+            /*
+            1 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 0 0 1 0
+            0 0 0 0 1
+            */
+            Cell[,] initialState = new Cell[5,5] {
+                { new Cell(true), new Cell(false), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(true), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(true), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(true), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(true) }
+            };
+
+            /*
+            0 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 0 0 1 0
+            0 0 0 0 0
+            */
+            Cell[,] expectedStateTick1 = new Cell[5,5] {
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(true), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(true), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(true), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) }
+            };
+
+            /*
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 1 0 0
+            0 0 0 0 0
+            0 0 0 0 0
+            */
+            Cell[,] expectedStateTick2 = new Cell[5,5] {
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(true), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) }
+            };
+
+            /*
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 0 0
+            */
+            Cell[,] expectedStateTick3 = new Cell[5,5] {
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) },
+                { new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(false) }
+            };
+            
+            Universe universe = new Universe(initialState);
+
+            Assert.True(MatchState(initialState, universe.Generations[0].StateOfUniverse)); //Ensure initial state is identical to generation zero
+                        
+            //Act
+            universe.Tick();
+            
+            //Asert
+            Assert.True(MatchState(expectedStateTick1, universe.Generations[1].StateOfUniverse));
+
+            //Act
+            universe.Tick();
+
+            //Asert
+            Assert.True(MatchState(expectedStateTick2, universe.Generations[2].StateOfUniverse));
+
+            //Act
+            universe.Tick();
+
+            //Asert
+            Assert.True(MatchState(expectedStateTick3, universe.Generations[3].StateOfUniverse));
         }
     }
 }

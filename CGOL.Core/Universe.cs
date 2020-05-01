@@ -7,12 +7,31 @@ namespace CGOL.Core
     public class Universe
     {
         private Cell[,] _CurrentState;
-        
+
         private int _TickCount;
 
         public List<Generation> Generations { get; private set; }
 
         public Universe(Cell[,] initialState)
+        {
+            SetInitialState(initialState);
+        }
+
+        public Universe(int columns, int rows)
+        {
+            //Initialize universe. All cells are dead.
+            Cell[,] initialState = new Cell[columns,rows];
+            for (int c = 0; c < columns; c++)
+                for (int r = 0; r < rows; r++)
+                {
+                    initialState.SetValue(new Cell(false), c, r);
+                }
+        
+            //Define initial state of the universe
+            this.SetInitialState(initialState);
+        }
+
+        private void SetInitialState(Cell[,] initialState)
         {
             //Define initial state of the universe
             _CurrentState = initialState;
@@ -31,12 +50,17 @@ namespace CGOL.Core
 
         private Cell[,] ApplyRules()
         {
-            Cell[,] newState = _CurrentState.Clone() as Cell[,];
+            int rows = _CurrentState.GetUpperBound(0); //TODO: Validate upperbound
+            int cols = _CurrentState.GetUpperBound(1); //TODO: Validate upperbound
+
+            // Need a copy of the array to act as buffer so that original stays intact during the processing
+            //Cell[,] newState = _CurrentState.Clone() as Cell[,]; //This doesn't work, as it performs a shallow copy, leaving same reference to objects inside array
+            Cell[,] newState = CopyArray(_CurrentState);
 
             Grid grid = new Grid(_CurrentState);
 
-            for (int i = 0; i <= _CurrentState.GetUpperBound(0); i++) //TODO: Validate upperbound
-                for (int j = 0; j <= _CurrentState.GetUpperBound(1); j++) //TODO: Validate upperbound
+            for (int i = 0; i <= rows; i++) 
+                for (int j = 0; j <= cols; j++)
                 {
                    List<Cell> neighbors = grid.GetNeighbors(i,j);
                    IEnumerable<Cell> liveCells = neighbors.Where(c => c.IsLive);
@@ -64,6 +88,22 @@ namespace CGOL.Core
                 }
 
             return newState;
+        }
+
+        private Cell[,] CopyArray(Cell[,] originalArr)
+        {
+            int rows = _CurrentState.GetUpperBound(0);
+            int cols = _CurrentState.GetUpperBound(1);
+
+            //Cell[,] newState = _CurrentState.Clone() as Cell[,]; //This doesn't work, as it performs a shallow copy, leaving same reference to objects inside array
+            Cell[,] newArray = new Cell[rows+1,cols+1];
+            for (int i = 0; i <= rows; i++) 
+                for (int j = 0; j <= cols; j++)
+                {
+                    newArray[i,j] = new Cell(_CurrentState[i,j].IsLive);
+                }
+
+            return newArray;
         }
     }
 }
