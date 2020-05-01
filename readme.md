@@ -47,8 +47,10 @@ This is a .NET Core Desktop UI based on Avalonia framework
 
 Usage:
 - Launch the app:
-  - cd CGOL.Desktop.UI
-  - dotnet run
+```shell
+  cd CGOL.Desktop.UI
+  dotnet run
+```
 - Create initial state by clicking on the cells
 - To Start simulation: press "S"
 - To Stop simulation press: "T"
