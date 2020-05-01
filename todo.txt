@@ -17,4 +17,8 @@
   - Load state (preload popular combinations)
   - Add generation counter
 
+- Performance Enhancements
+  - Optimize loops
+  - Explore data binding as an alternative to render loop
+
 - Create web version
