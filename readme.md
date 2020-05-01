@@ -20,7 +20,7 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 <h2>CGOL.Core</h2>
 This library contains the core functionality to initialize a universe of cells and perform transformations to it.
-It can be used in a different UI project by referencint it from nuget:
+It can be used in a different UI project by referencing it from nuget:
 
 - dotnet add package lluuiissoo.cgol.core
 
@@ -31,15 +31,21 @@ Usage:
 
 - Iterate and apply rules:
   - universe.Tick()
+  //Iterations should be done thru a timer (see implementation in Desktop UI project)
 
-- Iterations could be done thru a scheduler (In Progress...)
+- Access state of new generations:
+  - universe.Generations.LastOrDefault().StateOfUniverse
 
 <h2>CGOL.Desktop.UI</h2>
 This is a .NET Core Desktop UI based on Avalonia framework
 
 Usage:
-- cd CGOL.Desktop.UI
-- dotnet run
+- Launch the app:
+  - cd CGOL.Desktop.UI
+  - dotnet run
+- Create initial state by clicking on the cells
+- To Start simulation: press "S"
+- To Stop simulation press: "T"
+- To Reset board press: "N"
 
-
-
+UX Enhancements will be added when time permits. See todo.txt.
